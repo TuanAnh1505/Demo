@@ -1275,3 +1275,335 @@ span::before{
     }
 }
 /* ------hết hiệu ứng di chuyển chuột----- */
+
+/* Mobile Optimization */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+        padding: 10px;
+    }
+    
+    .container .boxcontainer {
+        width: 100%;
+        max-width: 400px;
+        height: 300px;
+        margin: 0 auto;
+    }
+    
+    .container .image > img {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .container .text-happybirthday {
+        transform: translateY(-100px);
+    }
+    
+    .container .text-happybirthday img {
+        width: 120px;
+    }
+    
+    .container .cake img {
+        width: 200px;
+        height: 130px;
+        margin-top: 30px;
+    }
+    
+    .box-balloon .balloon-item1 img {
+        width: 50px;
+    }
+    
+    .container .cloud > img {
+        width: 60px;
+    }
+    
+    .container .box-firework .firework > img {
+        width: 40px;
+    }
+    
+    .container .paperCannons > img {
+        width: 80px;
+    }
+    
+    .container .box-giftbox > img {
+        width: 40px;
+    }
+    
+    .container .cute1 img,
+    .container .cute2 img {
+        width: 30px;
+    }
+    
+    .container .mail {
+        right: 20px;
+        bottom: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .container .mail .fa-envelope {
+        font-size: 20px;
+    }
+    
+    /* Mail box mobile optimization */
+    .boxMail {
+        padding: 20px;
+    }
+    
+    .boxMail .boxMail-container {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        min-height: 400px;
+        flex-direction: column;
+    }
+    
+    .boxMail .boxMail-container .card1,
+    .boxMail .boxMail-container .card2 {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+    }
+    
+    .boxMail .boxMail-container .card1 .userImg {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .boxMail .boxMail-container .card1 .userImg img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .boxMail .boxMail-container .card1 h3 {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+    
+    .boxMail .boxMail-container .card2 h3 {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+    
+    .boxMail .boxMail-container .card2 h2 {
+        font-size: 12px;
+        line-height: 1.4;
+        padding: 10px;
+    }
+    
+    .boxMail .boxMail-container .card2 .card2-content .imageCute2 img {
+        width: 40px;
+    }
+    
+    .boxMail .fa-xmark {
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+    }
+    
+    /* Animation adjustments for mobile */
+    @keyframes texthappy {
+        0% {
+            transform: translateY(-100px);
+        }
+        40% {
+            transform: translateY(60px);
+        }
+        50% {
+            transform: translateY(65px);
+        }
+        55% {
+            transform: translateY(30px);
+        }
+        60% {
+            transform: translateY(55px);
+        }
+        70% {
+            transform: translateY(35px);
+        }
+        80%, 90%, 100% {
+            transform: translateY(45px);
+        }
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+    .container .boxcontainer {
+        height: 250px;
+    }
+    
+    .container .image > img {
+        max-width: 250px;
+    }
+    
+    .container .text-happybirthday {
+        transform: translateY(-80px);
+    }
+    
+    .container .text-happybirthday img {
+        width: 100px;
+    }
+    
+    .container .cake img {
+        width: 150px;
+        height: 100px;
+        margin-top: 20px;
+    }
+    
+    .box-balloon .balloon-item1 img {
+        width: 40px;
+    }
+    
+    .container .cloud > img {
+        width: 50px;
+    }
+    
+    .container .box-firework .firework > img {
+        width: 30px;
+    }
+    
+    .container .paperCannons > img {
+        width: 60px;
+    }
+    
+    .container .box-giftbox > img {
+        width: 30px;
+    }
+    
+    .container .cute1 img,
+    .container .cute2 img {
+        width: 25px;
+    }
+    
+    .container .mail {
+        right: 15px;
+        bottom: 15px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .container .mail .fa-envelope {
+        font-size: 18px;
+    }
+    
+    .boxMail .boxMail-container {
+        max-width: 300px;
+    }
+    
+    .boxMail .boxMail-container .card2 h2 {
+        font-size: 11px;
+        line-height: 1.3;
+    }
+}
+
+/* Touch optimization */
+@media (hover: none) and (pointer: coarse) {
+    .container .cake img:hover {
+        animation: none;
+    }
+    
+    .container .mail .fa-envelope:hover {
+        animation: none;
+    }
+    
+    .boxMail .boxMail-container:hover .card1 {
+        transform: none;
+    }
+    
+    .boxMail .boxMail-container:hover .card2-content {
+        transform: none;
+    }
+    
+    .boxMail .boxMail-container .card2:hover h3 {
+        animation: none;
+    }
+    
+    .boxMail .boxMail-container .card2:hover h2 {
+        animation: none;
+    }
+    
+    .boxMail .boxMail-container .card2 .card2-content:hover .imageCute2 {
+        animation: none;
+    }
+}
+
+/* Music Control Styles */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.music-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    animation: musicPulse 2s infinite;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.music-btn.playing {
+    animation: musicRotate 3s linear infinite;
+}
+
+.music-btn.paused {
+    animation: musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes musicRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile optimization for music control */
+@media screen and (max-width: 768px) {
+    .music-control {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .music-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .music-control {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .music-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}

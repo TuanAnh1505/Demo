@@ -3,7 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 		<link rel="stylesheet" href="style.css" />
 
 		<link
@@ -16,6 +19,16 @@
 		<title>Happy birthday</title>
 	</head>
 	<body>
+		<!-- Audio element for background music -->
+		<audio id="bgMusic" loop autoplay>
+			<!-- Local birthday music file -->
+			<source src="TikVid.io_7363345680963751186.mp3" type="audio/mpeg">
+			<!-- Fallback options -->
+			<source src="https://www.soundjay.com/misc/sounds/happy-birthday-to-you-1.wav" type="audio/wav">
+			<source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+			Your browser does not support the audio element.
+		</audio>
+		
 		<div class="container">
 			<div class="boxcontainer">
 				<div class="image">
@@ -117,11 +130,41 @@
 		</div>
 	</body>
 	<script>
-		document.addEventListener('mousemove', function (e) {
+		// Audio handling
+		const bgMusic = document.getElementById('bgMusic');
+		
+		// Function to play background music
+		function playBackgroundMusic() {
+			// Try to play music on user interaction (required by modern browsers)
+			bgMusic.play().catch(function(error) {
+				console.log("Audio play failed:", error);
+			});
+		}
+		
+		// Play music on first user interaction
+		document.addEventListener('click', function() {
+			playBackgroundMusic();
+		}, { once: true });
+		
+		document.addEventListener('touchstart', function() {
+			playBackgroundMusic();
+		}, { once: true });
+		
+		// Touch and mouse event handler for hearts
+		function createHeart(e) {
 			let body = document.querySelector('body');
 			let heart = document.createElement('span');
-			let x = e.offsetX;
-			let y = e.offsetY;
+			let x, y;
+			
+			// Handle both touch and mouse events
+			if (e.type === 'touchstart' || e.type === 'touchmove') {
+				x = e.touches[0].clientX;
+				y = e.touches[0].clientY;
+			} else {
+				x = e.offsetX;
+				y = e.offsetY;
+			}
+			
 			heart.style.left = x + 'px';
 			heart.style.top = y + 'px';
 
@@ -137,18 +180,54 @@
 			setTimeout(function () {
 				heart.remove();
 			}, 1000);
-		});
+		}
+
+		// Add event listeners for both mouse and touch
+		document.addEventListener('mousemove', createHeart);
+		document.addEventListener('touchmove', createHeart, { passive: true });
+		document.addEventListener('touchstart', createHeart, { passive: true });
 
 		let mailBox = document.querySelector('.mail');
 		let boxmail = document.querySelector('.boxMail');
 		var close = document.querySelector('.fa-xmark');
-		mailBox.onclick = function () {
+		
+		// Mail box click handler
+		mailBox.addEventListener('click', function () {
 			mailBox.classList.toggle('active');
 			boxmail.classList.add('active');
-		};
+			
+			// Play notification sound when opening mail
+			const notificationSound = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT');
+			notificationSound.play().catch(e => console.log('Sound play failed:', e));
+		});
 
+		// Close button handler
 		close.addEventListener('click', function () {
 			boxmail.classList.remove('active');
+		});
+		
+		// Close mail box when clicking outside
+		boxmail.addEventListener('click', function(e) {
+			if (e.target === boxmail) {
+				boxmail.classList.remove('active');
+			}
+		});
+		
+		// Prevent zoom on double tap for mobile
+		let lastTouchEnd = 0;
+		document.addEventListener('touchend', function (event) {
+			const now = (new Date()).getTime();
+			if (now - lastTouchEnd <= 300) {
+				event.preventDefault();
+			}
+			lastTouchEnd = now;
+		}, false);
+		
+		// Auto-play music when page loads (with fallback)
+		window.addEventListener('load', function() {
+			setTimeout(function() {
+				playBackgroundMusic();
+			}, 1000);
 		});
 	</script>
 </html>
